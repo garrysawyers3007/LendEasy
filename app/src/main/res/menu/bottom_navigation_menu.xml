@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        android:checked="false"
+        android:icon="@drawable/ic_launcher_foreground" />
+    <item android:id="@+id/lend"
+        android:title="Lend"
+        android:checked="true"
+        android:icon="@drawable/ic_launcher_foreground" />
+    <item android:id="@+id/borrow"
+        android:title="Borrow"
+        android:checked="false"
+        android:icon="@drawable/ic_launcher_foreground" />
+    <item android:id="@+id/target"
+        android:title="Target"
+        android:checked="false"
+        android:icon="@drawable/ic_launcher_foreground" />
+</menu>

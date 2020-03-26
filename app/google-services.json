@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "389982240072",
+    "firebase_url": "https://lendeasy-ef87e.firebaseio.com",
+    "project_id": "lendeasy-ef87e",
+    "storage_bucket": "lendeasy-ef87e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389982240072:android:4a28be806f50d711d1477d",
+        "android_client_info": {
+          "package_name": "com.lendeasy.lendeasy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389982240072-b9csjppp31mquaq9cvsjahdbao7afbnh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lendeasy.lendeasy",
+            "certificate_hash": "3ec13ce94dc184815d2d0ae99fb86ce542a52c2e"
+          }
+        },
+        {
+          "client_id": "389982240072-l6q2pk9i3d9rh7uqbbm7g7s81sh19t1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC4eKd5kC1yfdfmQPhn3Dy0vXulIASGp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389982240072-l6q2pk9i3d9rh7uqbbm7g7s81sh19t1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

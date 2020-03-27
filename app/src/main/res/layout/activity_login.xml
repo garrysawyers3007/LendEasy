@@ -8,8 +8,8 @@
     android:background="@color/Background">
 
     <com.google.android.gms.common.SignInButton
+        android:id="@+id/login"
         android:layout_width="wrap_content"
-        android:id="@+id/signin"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

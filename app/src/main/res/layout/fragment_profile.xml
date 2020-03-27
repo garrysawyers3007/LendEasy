@@ -66,7 +66,7 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="17dp"
             android:layout_marginTop="3dp"/>
         <TextView
             android:id="@+id/balance"
@@ -77,13 +77,13 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="17dp"
             android:layout_marginTop="3dp"/>
         <TextView
             android:id="@+id/timetxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time"
+            android:text="Score"
             android:layout_below="@+id/name"
             android:textColor="#ffffff"
             android:textSize="20sp"

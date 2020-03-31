@@ -69,8 +69,8 @@ public class Borrow extends Fragment {
         //ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         FragmentPagerItemAdapter adapter=new FragmentPagerItemAdapter(getChildFragmentManager(),
                 FragmentPagerItems.with(getContext())
-                        .add("Top 10",Top10.class)
-                        .add("Friends",Friends.class)
+                        .add("Money",Top10.class)
+                        .add("Other Items",Friends.class)
                         .create());
 
         viewPager.setAdapter(adapter);

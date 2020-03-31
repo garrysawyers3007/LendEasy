@@ -8,6 +8,9 @@
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/viewpagertab"
+        android:background="@drawable/item_bg"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_height="48dp"
@@ -25,7 +28,7 @@
         app:stl_underlineColor="@color/Accent3"
         app:stl_underlineThickness="0.5dp"
         app:stl_dividerColor="@color/Foreground"
-        app:stl_dividerThickness="1dp"
+        app:stl_dividerThickness="2dp"
         app:stl_defaultTabBackground="?attr/selectableItemBackground"
         app:stl_defaultTabTextAllCaps="true"
         app:stl_defaultTabTextColor="@color/Accent3"

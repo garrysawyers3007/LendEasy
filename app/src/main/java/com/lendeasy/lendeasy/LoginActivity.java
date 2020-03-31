@@ -68,6 +68,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null) {
 
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> data = new HashMap<>();
+            data.put("PhoneNumber", sharedPref.getString("PhoneNum",""));
+            db.collection("users").document(user.getUid())
+                    .set(data,SetOptions.merge());
+
             if(sharedPref.getString("PhoneNum","").equals("")) {
                 startActivity(new Intent(LoginActivity.this, PhoneAuth.class));
                 finish();

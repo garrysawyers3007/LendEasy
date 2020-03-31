@@ -6,15 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Profile">
 
-    <ImageView
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:elevation="2dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="15dp"
-        android:src="@drawable/ic_exit" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,6 +18,14 @@
         android:id="@+id/holder"
         android:elevation="5dp"
         android:background="@drawable/details_bg">
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:elevation="2dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_exit" />
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -109,13 +108,14 @@
         android:layout_height="wrap_content"
         android:text="Recent Transactions"
         android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:layout_marginLeft="15dp"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/holder"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/text"
+        android:layout_above="@+id/borrow"
         android:id="@+id/history"
         android:elevation="5dp"
         android:background="@drawable/details_bg"
@@ -124,4 +124,17 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borrow"
+        android:id="@+id/borrow"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/item_bg"/>
 </RelativeLayout>

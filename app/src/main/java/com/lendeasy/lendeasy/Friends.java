@@ -2,11 +2,23 @@ package com.lendeasy.lendeasy;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 
 /**
@@ -23,6 +35,7 @@ public class Friends extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ArrayList<BorrowModel> list;
 
     public Friends() {
         // Required empty public constructor
@@ -58,7 +71,40 @@ public class Friends extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        final View view=inflater.inflate(R.layout.fragment_friends, container, false);
+
+
+        FirebaseFirestore db=FirebaseFirestore.getInstance();
+
+        db.collection("borrow").
+                addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        list=new ArrayList<>();
+
+                        if(queryDocumentSnapshots!=null)
+                        for(DocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
+
+                            String Name,Title,Description,ImageUrl,Time;
+                            Name=documentSnapshot.getString("Borrower");
+                            Title=documentSnapshot.getString("Title");
+                            Description=documentSnapshot.getString("Description");
+                            ImageUrl=documentSnapshot.getString("Image");
+                            Time=documentSnapshot.getString("Time");
+                            Log.d("Wht",Name);
+                            list.add(new BorrowModel(Name,Title,Description,ImageUrl,Time));
+
+                        }
+
+                        RecyclerView recyclerView=view.findViewById(R.id.recyclerview);
+                        BorrowAdapter adapter=new BorrowAdapter(list,getContext());
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        recyclerView.setAdapter(adapter);
+                    }
+
+                });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friends, container, false);
+        return view;
     }
 }

@@ -3,17 +3,17 @@
     <item android:id="@+id/profile"
         android:title="Profile"
         android:checked="false"
-        android:icon="@drawable/ic_launcher_foreground" />
+        android:icon="@drawable/ic_profile" />
     <item android:id="@+id/lend"
         android:title="Lend"
         android:checked="true"
-        android:icon="@drawable/ic_launcher_foreground" />
+        android:icon="@drawable/lend" />
     <item android:id="@+id/borrow"
         android:title="Borrow"
         android:checked="false"
-        android:icon="@drawable/ic_launcher_foreground" />
+        android:icon="@drawable/borrow" />
     <item android:id="@+id/target"
         android:title="Target"
         android:checked="false"
-        android:icon="@drawable/ic_launcher_foreground" />
+        android:icon="@drawable/target" />
 </menu>

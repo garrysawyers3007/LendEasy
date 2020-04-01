@@ -2,12 +2,13 @@ package com.lendeasy.lendeasy;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,7 +33,7 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseFirestore database;
     Map<String, Object> data;
     CollectionReference collectionReference;
-    ImageButton button;
+    Button button;
     EditText editText;
 
     @Override
@@ -40,8 +41,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        initRecyclerView();
-        button = findViewById(R.id.imageButton);
+
+        button = findViewById(R.id.button);
         editText = findViewById(R.id.editText);
         database = FirebaseFirestore.getInstance();
         collectionReference = database.collection("chat");
@@ -50,9 +51,13 @@ public class ChatActivity extends AppCompatActivity {
         getMessages.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                chatAdapter.updateRecylerView(queryDocumentSnapshots.toObjects(ChatModel.class));
+                if (queryDocumentSnapshots != null) {
+                    chatAdapter.updateRecylerView(queryDocumentSnapshots.toObjects(ChatModel.class));
+                }
             }
         });
+
+        initRecyclerView();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +69,11 @@ public class ChatActivity extends AppCompatActivity {
                     data = new HashMap<>();
                     data.put("message", editText.getText().toString());
                     data.put("timeStamp", FieldValue.serverTimestamp());
+                    editText.setText("");
                     collectionReference.add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Toast.makeText(ChatActivity.this, "Message Sent", Toast.LENGTH_SHORT).show();
-                            editText.setText("");
                         }
                     });
                 }
@@ -78,18 +83,14 @@ public class ChatActivity extends AppCompatActivity {
 
 
     public void initRecyclerView() {
-        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recylerView);
         chatAdapter = new ChatAdapter(arrayList, getApplicationContext());
         recyclerView.setAdapter(chatAdapter);
-        recyclerView.setLayoutManager(new RecyclerView.LayoutManager() {
-            @Override
-            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return null;
-            }
-        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
-    private boolean isEmpty(EditText etText) {
-        return etText.getText().toString().trim().length() == 0;
+    private boolean isEmpty(EditText editText) {
+        return editText.getText().toString().trim().length() == 0;
     }
 }

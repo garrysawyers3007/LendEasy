@@ -1,23 +1,25 @@
 package com.lendeasy.lendeasy;
 
+import com.google.firebase.Timestamp;
+
 public class ChatModel {
     private String message;
-    private String timeStamp;
+    private Timestamp timeStamp;
 
-    public ChatModel(String message, String timeStamp) {
+    public ChatModel(String message, Timestamp timeStamp) {
         this.message = message;
         this.timeStamp = timeStamp;
     }
 
-    public ChatModel(String message) {
-        this.message = message;
+    public ChatModel() {
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getTimeStamp() {
+    public Timestamp getTimeStamp() {
         return timeStamp;
     }
 }
+

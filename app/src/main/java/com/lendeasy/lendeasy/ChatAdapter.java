@@ -1,16 +1,19 @@
 package com.lendeasy.lendeasy;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
@@ -37,8 +40,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(arrayList.get(position).getMessage());
-
+        holder.chatTV.setText(arrayList.get(position).getMessage());
+        holder.timeTV.setText(getTime(arrayList.get(position).getTimeStamp()));
     }
 
     @Override
@@ -46,15 +49,22 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         return arrayList.size();
     }
 
+    public String getTime(Timestamp time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time.getSeconds() * 1000);
+        String date = DateFormat.format("hh:mm a", calendar).toString();
+        return date;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
-        ConstraintLayout constraintLayout;
+        TextView chatTV;
+        TextView timeTV;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textView);
-            constraintLayout = itemView.findViewById(R.id.parent);
+            chatTV = itemView.findViewById(R.id.chatTV);
+            timeTV = itemView.findViewById(R.id.timeTV);
         }
     }
 }

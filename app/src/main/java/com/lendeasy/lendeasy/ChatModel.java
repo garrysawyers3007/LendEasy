@@ -3,6 +3,7 @@ package com.lendeasy.lendeasy;
 import com.google.firebase.Timestamp;
 
 public class ChatModel {
+
     private String message;
     private Timestamp timeStamp;
 

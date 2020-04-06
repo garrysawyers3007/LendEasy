@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,10 +27,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.google.firebase.firestore.DocumentSnapshot.ServerTimestampBehavior.ESTIMATE;
+
 public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ChatAdapter chatAdapter;
-    List<ChatModel> arrayList = new ArrayList<>();
+    List<ChatModel> arrayList;
     FirebaseFirestore database;
     Map<String, Object> data;
     CollectionReference collectionReference;
@@ -44,15 +47,29 @@ public class ChatActivity extends AppCompatActivity {
 
         button = findViewById(R.id.button);
         editText = findViewById(R.id.editText);
+        recyclerView = findViewById(R.id.recylerView);
         database = FirebaseFirestore.getInstance();
         collectionReference = database.collection("chat");
         Query getMessages = collectionReference.orderBy("timeStamp");
+
+
 
         getMessages.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (queryDocumentSnapshots != null) {
-                    chatAdapter.updateRecylerView(queryDocumentSnapshots.toObjects(ChatModel.class));
+
+                    arrayList=new ArrayList<>();
+                    for(DocumentSnapshot doc:queryDocumentSnapshots){
+                        DocumentSnapshot.ServerTimestampBehavior behavior = ESTIMATE;
+                        arrayList.add(new ChatModel(doc.getString("message"),doc.getTimestamp("timeStamp",behavior)));
+                    }
+
+                    chatAdapter = new ChatAdapter(arrayList, getApplicationContext());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
+                    recyclerView.setAdapter(chatAdapter);
+                    recyclerView.scrollToPosition(arrayList.size()-1);
+                    //chatAdapter.updateRecylerView(queryDocumentSnapshots.toObjects(ChatModel.class));
                 }
             }
         });
@@ -83,10 +100,6 @@ public class ChatActivity extends AppCompatActivity {
 
 
     public void initRecyclerView() {
-        recyclerView = findViewById(R.id.recylerView);
-        chatAdapter = new ChatAdapter(arrayList, getApplicationContext());
-        recyclerView.setAdapter(chatAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 

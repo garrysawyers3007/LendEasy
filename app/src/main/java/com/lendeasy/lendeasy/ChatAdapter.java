@@ -2,6 +2,7 @@ package com.lendeasy.lendeasy;
 
 import android.content.Context;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.chatTV.setText(arrayList.get(position).getMessage());
         holder.timeTV.setText(getTime(arrayList.get(position).getTimeStamp()));
     }
@@ -50,6 +52,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
     public String getTime(Timestamp time) {
+
+        Log.d("time",""+time);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time.getSeconds() * 1000);
         String date = DateFormat.format("hh:mm a", calendar).toString();

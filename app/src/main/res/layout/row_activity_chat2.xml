@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="2dp"
@@ -17,23 +17,21 @@
 
 
         <TextView
-            android:id="@+id/chatTV"
+            android:id="@+id/chatTV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="hello wassup"
-            android:autoSizeTextType="uniform"
             android:textColor="@color/Foreground"
-            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/timeTV"
+            android:id="@+id/timeTV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_toEndOf="@id/chatTV"
-            android:layout_toRightOf="@id/chatTV"
+            android:layout_toEndOf="@id/chatTV2"
+            android:layout_toRightOf="@id/chatTV2"
             android:drawablePadding="5dp"
             android:padding="8dp"
             android:text="10:45 PM"
